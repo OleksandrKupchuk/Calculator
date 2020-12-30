@@ -6,27 +6,82 @@ using TMPro;
 
 public class InputSymbol : MonoBehaviour
 {
-    [SerializeField] private InputField input;
-    //[SerializeField] private TextMeshProUGUI input;
-    [SerializeField] private string startSymbol;
-    [SerializeField] private string nameButton;
-    [SerializeField] private TextMeshProUGUI symbol;
+    private InputField inputField;
+    [SerializeField] private char symbol;
+    [SerializeField] private TextMeshProUGUI textMeshPro;
 
+    private string symbolsFromTheInputField;
+
+    private char[] symbolsThatAreNotReenteredAfter = { '/', '-', '+', '*'}; 
+    private char[] numbers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' }; 
+ 
     void Start()
     {
-        gameObject.transform.name = nameButton;
+        inputField = GameObject.FindGameObjectWithTag("InputField").GetComponent<InputField>(); 
         Debug.Log("name = " + transform.GetChild(0).transform.name);
-        symbol.text = startSymbol;
+        textMeshPro.text = symbol.ToString();
     }
 
-    void Update()
+    public void InputSymbolInInputField()
     {
-        
+        if (inputField != null)
+        {
+            symbolsFromTheInputField = inputField.text;
+
+            if (CanInputThisSymbos() && CanInputZero())
+            {
+                inputField.text += symbol;
+            }
+
+            else if (!CanInputThisSymbos())
+            {
+                Debug.Log("Такий символ не можна вводитии першим");
+            }
+        }
     }
 
-    public void GetSymbol()
+    private bool CanInputThisSymbos()
     {
-        input.text += symbol.text;
-        Debug.Log("symbol = " + symbol.text);
+        for (int i = 0; i < symbolsThatAreNotReenteredAfter.Length; i++)
+        {
+            if(symbolsFromTheInputField[symbolsFromTheInputField.Length - 1] == symbolsThatAreNotReenteredAfter[i])
+            {
+                if(IsNumber())
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
+    }
+
+    private bool CanInputZero()
+    {
+        if (symbolsFromTheInputField[0] == '0' && symbol == '0')
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool IsNumber()
+    {
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            if(symbol == numbers[i])
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
