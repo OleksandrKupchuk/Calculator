@@ -17,7 +17,7 @@ public class InputSymbol : MonoBehaviour
     void Start()
     {
         inputField = GameObject.FindGameObjectWithTag("InputField").GetComponent<InputField>(); 
-        Debug.Log("name = " + transform.GetChild(0).transform.name);
+        //Debug.Log("name = " + transform.GetChild(0).transform.name);
         textMeshPro.text = symbol.ToString();
     }
 
