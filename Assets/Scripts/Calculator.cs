@@ -12,6 +12,13 @@ public class Calculator : MonoBehaviour
         inputField.text = "0";
     }
 
+    /// <summary>
+    /// Приймає 2 числа і знак операції, повертає результат
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
     public static int Calculation(char symbol, int a, int b)
     {
         switch (symbol)
@@ -32,6 +39,7 @@ public class Calculator : MonoBehaviour
         return 0;
     }
 
+    //Скидає поле введення
     public void ButtonReset()
     {
         inputField.text = "0";

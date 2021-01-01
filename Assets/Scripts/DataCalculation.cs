@@ -12,6 +12,11 @@ public class DataCalculation
     private static char symbolOperationOfTheLine;
     private static int result;
 
+    /// <summary>
+    /// Метод приймає вираз із поля введення і ділить його на 2 числа та повертає символ оперрації який у введений у виразі
+    /// </summary>
+    /// <param name="inputFieldText"></param>
+    /// <returns></returns>
     private static char GetCharFromInputField(string inputFieldText)
     {
         stringFromTheInputField = inputFieldText;
@@ -39,6 +44,10 @@ public class DataCalculation
         return '0';
     }
 
+    /// <summary>
+    /// Виведення результату
+    /// </summary>
+    /// <param name="inputField"></param>
     public static void OutputResult(InputField inputField)
     {
         if (inputField.text != null)
@@ -52,6 +61,10 @@ public class DataCalculation
         }
     }
 
+    /// <summary>
+    /// Обраховує вираз, якщо у виразі присутні 2 числа і знак, інакше виводить повідомлення
+    /// </summary>
+    /// <param name="inputField"></param>
     private static void Operation(InputField inputField)
     {
         GetCharFromInputField(inputField.text);

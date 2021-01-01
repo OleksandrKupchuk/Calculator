@@ -26,6 +26,7 @@ public class InputSymbol : MonoBehaviour
         DataCalculation.OutputResult(inputField);
     }
 
+    //Перевірка на введення символу в поле, метод обраховує коли можна вводити нулі
     public void InputSymbolInInputField()
     {
         if (inputField != null)
@@ -49,6 +50,7 @@ public class InputSymbol : MonoBehaviour
         }
     }
 
+    //Перевірка на символ
     private bool IsSymbol()
     {
         for (int i = 0; i < DataCalculation.symbolsOperation.Length; i++)
@@ -62,6 +64,7 @@ public class InputSymbol : MonoBehaviour
         return false;
     }
 
+    //Перевірка на введення символу, метод потрібний для того щоб не можна було ввести 2 і більше символи операції підряд
     private bool CanInputThisSymbos()
     {
         for (int i = 0; i < DataCalculation.symbolsOperation.Length; i++)
@@ -84,6 +87,7 @@ public class InputSymbol : MonoBehaviour
 
     }
 
+    //Перевірка на введення нуля
     private bool CanInputZero()
     {
         if (symbolsFromTheInputField[0] == '0' && symbol == '0' && symbolsFromTheInputField.Length == 1)
@@ -94,6 +98,7 @@ public class InputSymbol : MonoBehaviour
         return true;
     }
 
+    //Перевірка на число
     private bool IsNumber()
     {
         for (int i = 0; i < numbers.Length; i++)
@@ -106,7 +111,8 @@ public class InputSymbol : MonoBehaviour
 
         return false;
     }
-
+    
+    //Перерівяє чи потрібно стирати початковий "0" в полі введення
     private void CheckField()
     {
         if(symbolsFromTheInputField[0] == '0' && symbolsFromTheInputField.Length == 1)
