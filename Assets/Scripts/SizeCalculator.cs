@@ -33,27 +33,37 @@ public class SizeCalculator : MonoBehaviour
     {
         if(screenWidth < calculatorRectTransform.sizeDelta.x && screenHeight > calculatorRectTransform.sizeDelta.y)
         {
-            SetLocalScale(GetScale(screenWidth, calculatorRectTransform.sizeDelta.x), GetScale(screenWidth, calculatorRectTransform.sizeDelta.x));
+            SetLocalScale(GetScale(screenWidth, calculatorRectTransform.sizeDelta.x));
         }
 
         if (screenWidth > calculatorRectTransform.sizeDelta.y && screenHeight < calculatorRectTransform.sizeDelta.x)
         {
-            SetLocalScale(GetScale(screenHeight, calculatorRectTransform.sizeDelta.y), GetScale(screenHeight, calculatorRectTransform.sizeDelta.y));
+            SetLocalScale(GetScale(screenHeight, calculatorRectTransform.sizeDelta.y));
         }
 
         if (screenWidth < calculatorRectTransform.sizeDelta.y && screenHeight < calculatorRectTransform.sizeDelta.x)
         {
-            SetLocalScale(GetScale(screenWidth, calculatorRectTransform.sizeDelta.x), GetScale(screenHeight, calculatorRectTransform.sizeDelta.y));
+            SetLocalScale(GetScale(FindingTheSmallerSide(screenWidth, screenHeight), FindingTheSmallerSide(screenWidth, screenHeight)));
         }
     }
 
-    private void SetLocalScale(float valueX, float valueY)
+    private void SetLocalScale(float valueX)
     {
-        calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * valueX, calculatorRectTransform.localScale.y * valueY);
+        calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * valueX, calculatorRectTransform.localScale.y * valueX);
     }
 
     private float GetScale(float screenSize, float calculatorSize)
     {
         return screenSize / calculatorSize;
+    }
+
+    private float FindingTheSmallerSide(float widthSide, float heightSide)
+    {
+        if(widthSide < heightSide)
+        {
+            return widthSide;
+        }
+
+        return heightSide;
     }
 }
