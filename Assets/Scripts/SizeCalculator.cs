@@ -8,41 +8,56 @@ public class SizeCalculator : MonoBehaviour
     [SerializeField] private float height;
     [SerializeField] private float width;
 
+    [SerializeField] private float widthButton;
+
     [SerializeField] private int screenWidth;
     [SerializeField] private int screenHeight;
 
-    [SerializeField] private GameObject numbersObject;
-    [SerializeField] private GameObject operationObject;
-    [SerializeField] private GameObject inputFieldObject;
+    [SerializeField] private GameObject calculatorObject;
 
-    private GridLayoutGroup numbersLayoutGroup;
-    private GridLayoutGroup operationLayoutGroup;
-    private RectTransform inputRectTransform;
+    private GridLayoutGroup keyboadrLayoutGroup;
+
+    private RectTransform calculatorRectTransform;
 
     void Start()
     {
-        numbersLayoutGroup = numbersObject.GetComponent<GridLayoutGroup>();
-        operationLayoutGroup = operationObject.GetComponent<GridLayoutGroup>();
-        inputRectTransform = inputFieldObject.GetComponent<RectTransform>();
-
-        ChangeSize();
-    }
-
-    void Update()
-    {
-        
-    }
-
-    private void ChangeSize()
-    {
-        screenWidth = Screen.width;
-
-        if(screenWidth < inputRectTransform.sizeDelta.x)
+        if(calculatorObject != null)
         {
-            float valueX = screenWidth / inputRectTransform.sizeDelta.x;
-            width = (inputRectTransform.sizeDelta.x * valueX) - 10f;
+            calculatorRectTransform = calculatorObject.GetComponent<RectTransform>();
+        }
+        else
+        {
+            Debug.LogError("Посилання на об'єкт не встановлено");
+        }
 
-            inputRectTransform.sizeDelta = new Vector2(width, inputRectTransform.sizeDelta.y);
+        screenWidth = Screen.width;
+        screenHeight = Screen.height;
+
+        ChangeSize(screenWidth, screenHeight);
+    }
+
+    private void ChangeSize(float screenWidth, float screenHeight)
+    {
+        if(screenWidth < calculatorRectTransform.sizeDelta.x && screenHeight > calculatorRectTransform.sizeDelta.y)
+        {
+            float value = screenWidth / calculatorRectTransform.sizeDelta.x;
+
+            calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * value, calculatorRectTransform.localScale.y * value);
+        }
+
+        if (screenWidth > calculatorRectTransform.sizeDelta.y && screenHeight < calculatorRectTransform.sizeDelta.x)
+        {
+            float value = screenHeight / calculatorRectTransform.sizeDelta.y;
+
+            calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * value, calculatorRectTransform.localScale.y * value);
+        }
+
+        if (screenWidth < calculatorRectTransform.sizeDelta.y && screenHeight < calculatorRectTransform.sizeDelta.x)
+        {
+            float valueX = screenWidth / calculatorRectTransform.sizeDelta.x;
+            float valueY = screenHeight / calculatorRectTransform.sizeDelta.y;
+
+            calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * valueX, calculatorRectTransform.localScale.y * valueY);
         }
     }
 }
