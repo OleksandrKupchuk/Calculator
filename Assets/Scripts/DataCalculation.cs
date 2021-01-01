@@ -5,28 +5,28 @@ using UnityEngine.UI;
 
 public class DataCalculation
 {
-    private static string symbolsFromTheInputField;
-    private static char[] symbolsOperation = { '-', '+', '*', '/' };
-    private static string leftSide;
-    private static string rightSide;
-    private static char symbolOperation;
+    private static string stringFromTheInputField;
+    public static char[] symbolsOperation = { '-', '+', '*', '/' };
+    private static string leftPartOfTheLine;
+    private static string rightPartOfTheLine;
+    private static char symbolOperationOfTheLine;
     private static int result;
 
     private static char GetCharFromInputField(string inputFieldText)
     {
-        symbolsFromTheInputField = inputFieldText;
+        stringFromTheInputField = inputFieldText;
 
-        for (int i = symbolsFromTheInputField.Length - 1; i > 0; i--)
+        for (int i = stringFromTheInputField.Length - 1; i > 0; i--)
         {
             for (int j = 0; j < symbolsOperation.Length; j++)
             {
-                if (symbolsFromTheInputField[i] == symbolsOperation[j] && symbolsFromTheInputField[symbolsFromTheInputField.Length - 1] != symbolsOperation[j])
+                if (stringFromTheInputField[i] == symbolsOperation[j] && stringFromTheInputField[stringFromTheInputField.Length - 1] != symbolsOperation[j])
                 {
-                    symbolOperation = symbolsFromTheInputField[i];
-                    leftSide = symbolsFromTheInputField.Substring(0, i);
-                    rightSide = symbolsFromTheInputField.Substring(i + 1);
+                    symbolOperationOfTheLine = stringFromTheInputField[i];
+                    leftPartOfTheLine = stringFromTheInputField.Substring(0, i);
+                    rightPartOfTheLine = stringFromTheInputField.Substring(i + 1);
 
-                    return symbolOperation;
+                    return symbolOperationOfTheLine;
                 }
 
                 else
@@ -58,7 +58,7 @@ public class DataCalculation
 
         if (GetCharFromInputField(inputField.text) != '0')
         {
-            result = Calculator.Calculation(symbolOperation, int.Parse(leftSide), int.Parse(rightSide));
+            result = Calculator.Calculation(symbolOperationOfTheLine, int.Parse(leftPartOfTheLine), int.Parse(rightPartOfTheLine));
             inputField.text = result.ToString();
         }
 

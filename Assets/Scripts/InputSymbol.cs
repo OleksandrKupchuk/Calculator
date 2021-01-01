@@ -12,7 +12,6 @@ public class InputSymbol : MonoBehaviour
 
     private string symbolsFromTheInputField;
 
-    private char[] symbolsThatAreNotReenteredAfter = { '/', '-', '+', '*'}; 
     private char[] numbers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
     void Start()
@@ -40,7 +39,7 @@ public class InputSymbol : MonoBehaviour
                     CheckTheOperation();
                 }
 
-                inputField.text += symbol;
+                CheckField();
             }
 
             else if (!CanInputThisSymbos())
@@ -52,9 +51,9 @@ public class InputSymbol : MonoBehaviour
 
     private bool IsSymbol()
     {
-        for (int i = 0; i < symbolsThatAreNotReenteredAfter.Length; i++)
+        for (int i = 0; i < DataCalculation.symbolsOperation.Length; i++)
         {
-            if(symbol == symbolsThatAreNotReenteredAfter[i])
+            if(symbol == DataCalculation.symbolsOperation[i])
             {
                 return true;
             }
@@ -65,9 +64,9 @@ public class InputSymbol : MonoBehaviour
 
     private bool CanInputThisSymbos()
     {
-        for (int i = 0; i < symbolsThatAreNotReenteredAfter.Length; i++)
+        for (int i = 0; i < DataCalculation.symbolsOperation.Length; i++)
         {
-            if(symbolsFromTheInputField[symbolsFromTheInputField.Length - 1] == symbolsThatAreNotReenteredAfter[i])
+            if(symbolsFromTheInputField[symbolsFromTheInputField.Length - 1] == DataCalculation.symbolsOperation[i])
             {
                 if(IsNumber())
                 {
@@ -106,5 +105,19 @@ public class InputSymbol : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void CheckField()
+    {
+        if(symbolsFromTheInputField[0] == '0' && symbolsFromTheInputField.Length == 1)
+        {
+            inputField.text = string.Empty;
+            inputField.text += symbol;
+        }
+
+        else
+        {
+            inputField.text += symbol;
+        }
     }
 }

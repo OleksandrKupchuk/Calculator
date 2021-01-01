@@ -12,11 +12,6 @@ public class Calculator : MonoBehaviour
         inputField.text = "0";
     }
 
-    public void GetResult()
-    {
-        DataCalculation.OutputResult(inputField);
-    }
-
     public static int Calculation(char symbol, int a, int b)
     {
         switch (symbol)
