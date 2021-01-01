@@ -13,13 +13,18 @@ public class InputSymbol : MonoBehaviour
     private string symbolsFromTheInputField;
 
     private char[] symbolsThatAreNotReenteredAfter = { '/', '-', '+', '*'}; 
-    private char[] numbers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' }; 
- 
+    private char[] numbers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
     void Start()
     {
         inputField = GameObject.FindGameObjectWithTag("InputField").GetComponent<InputField>(); 
         Debug.Log("name = " + transform.GetChild(0).transform.name);
         textMeshPro.text = symbol.ToString();
+    }
+
+    public void CheckTheOperation()
+    {
+        DataCalculation.OutputResult(inputField);
     }
 
     public void InputSymbolInInputField()
@@ -30,14 +35,32 @@ public class InputSymbol : MonoBehaviour
 
             if (CanInputThisSymbos() && CanInputZero())
             {
+                if (IsSymbol())
+                {
+                    CheckTheOperation();
+                }
+
                 inputField.text += symbol;
             }
 
             else if (!CanInputThisSymbos())
             {
-                Debug.Log("Такий символ не можна вводитии першим");
+                Debug.Log("Даний символ не можна вводитии першим");
             }
         }
+    }
+
+    private bool IsSymbol()
+    {
+        for (int i = 0; i < symbolsThatAreNotReenteredAfter.Length; i++)
+        {
+            if(symbol == symbolsThatAreNotReenteredAfter[i])
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool CanInputThisSymbos()
@@ -64,7 +87,7 @@ public class InputSymbol : MonoBehaviour
 
     private bool CanInputZero()
     {
-        if (symbolsFromTheInputField[0] == '0' && symbol == '0')
+        if (symbolsFromTheInputField[0] == '0' && symbol == '0' && symbolsFromTheInputField.Length == 1)
         {
             return false;
         }
