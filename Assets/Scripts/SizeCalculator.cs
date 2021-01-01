@@ -5,17 +5,10 @@ using UnityEngine.UI;
 
 public class SizeCalculator : MonoBehaviour
 {
-    [SerializeField] private float height;
-    [SerializeField] private float width;
-
-    [SerializeField] private float widthButton;
-
     [SerializeField] private int screenWidth;
     [SerializeField] private int screenHeight;
 
     [SerializeField] private GameObject calculatorObject;
-
-    private GridLayoutGroup keyboadrLayoutGroup;
 
     private RectTransform calculatorRectTransform;
 
@@ -40,24 +33,27 @@ public class SizeCalculator : MonoBehaviour
     {
         if(screenWidth < calculatorRectTransform.sizeDelta.x && screenHeight > calculatorRectTransform.sizeDelta.y)
         {
-            float value = screenWidth / calculatorRectTransform.sizeDelta.x;
-
-            calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * value, calculatorRectTransform.localScale.y * value);
+            SetLocalScale(GetScale(screenWidth, calculatorRectTransform.sizeDelta.x), GetScale(screenWidth, calculatorRectTransform.sizeDelta.x));
         }
 
         if (screenWidth > calculatorRectTransform.sizeDelta.y && screenHeight < calculatorRectTransform.sizeDelta.x)
         {
-            float value = screenHeight / calculatorRectTransform.sizeDelta.y;
-
-            calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * value, calculatorRectTransform.localScale.y * value);
+            SetLocalScale(GetScale(screenHeight, calculatorRectTransform.sizeDelta.y), GetScale(screenHeight, calculatorRectTransform.sizeDelta.y));
         }
 
         if (screenWidth < calculatorRectTransform.sizeDelta.y && screenHeight < calculatorRectTransform.sizeDelta.x)
         {
-            float valueX = screenWidth / calculatorRectTransform.sizeDelta.x;
-            float valueY = screenHeight / calculatorRectTransform.sizeDelta.y;
-
-            calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * valueX, calculatorRectTransform.localScale.y * valueY);
+            SetLocalScale(GetScale(screenWidth, calculatorRectTransform.sizeDelta.x), GetScale(screenHeight, calculatorRectTransform.sizeDelta.y));
         }
+    }
+
+    private void SetLocalScale(float valueX, float valueY)
+    {
+        calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * valueX, calculatorRectTransform.localScale.y * valueY);
+    }
+
+    private float GetScale(float screenSize, float calculatorSize)
+    {
+        return screenSize / calculatorSize;
     }
 }
