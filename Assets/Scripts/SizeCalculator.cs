@@ -29,34 +29,42 @@ public class SizeCalculator : MonoBehaviour
         ChangeSize(screenWidth, screenHeight);
     }
 
+    /// <summary>
+    /// Зміна розмірів калькулятора при розширеннях менших за сам калькулятор.
+    /// </summary>
+    /// <param name="screenWidth"></param>
+    /// <param name="screenHeight"></param>
     private void ChangeSize(float screenWidth, float screenHeight)
     {
-        if(screenWidth < calculatorRectTransform.sizeDelta.x && screenHeight > calculatorRectTransform.sizeDelta.y)
+        if(screenWidth < calculatorRectTransform.sizeDelta.x)
         {
             SetLocalScale(GetScale(screenWidth, calculatorRectTransform.sizeDelta.x));
         }
 
-        if (screenWidth > calculatorRectTransform.sizeDelta.y && screenHeight < calculatorRectTransform.sizeDelta.x)
+        if (screenWidth > calculatorRectTransform.sizeDelta.y)
         {
             SetLocalScale(GetScale(screenHeight, calculatorRectTransform.sizeDelta.y));
         }
 
-        if (screenWidth < calculatorRectTransform.sizeDelta.y && screenHeight < calculatorRectTransform.sizeDelta.x)
+        if(screenWidth > calculatorRectTransform.sizeDelta.y && screenHeight > calculatorRectTransform.sizeDelta.x)
         {
-            SetLocalScale(GetScale(FindingTheSmallerSide(screenWidth, screenHeight), FindingTheSmallerSide(screenWidth, screenHeight)));
+            SetLocalScale(GetScale(FindingTheSmallerSide(screenWidth, screenHeight), calculatorRectTransform.sizeDelta.x));
         }
     }
 
+    //Встановлюємо нові розміри калькулятору 
     private void SetLocalScale(float valueX)
     {
         calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * valueX, calculatorRectTransform.localScale.y * valueX);
     }
 
-    private float GetScale(float screenSize, float calculatorSize)
+    //Визначаємо у скільки разів розмір екрану менший за розмір калькулятора
+    private float GetScale(float minSize, float maxSize)
     {
-        return screenSize / calculatorSize;
+        return minSize / maxSize;
     }
 
+    //Визначаємо найменший розмір сторони екрану
     private float FindingTheSmallerSide(float widthSide, float heightSide)
     {
         if(widthSide < heightSide)
