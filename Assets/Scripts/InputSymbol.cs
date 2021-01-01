@@ -115,7 +115,7 @@ public class InputSymbol : MonoBehaviour
     //Перерівяє чи потрібно стирати початковий "0" в полі введення
     private void CheckField()
     {
-        if(symbolsFromTheInputField[0] == '0' && symbolsFromTheInputField.Length == 1)
+        if(symbolsFromTheInputField[0] == '0' && symbolsFromTheInputField.Length == 1 && !IsSymbol())
         {
             inputField.text = string.Empty;
             inputField.text += symbol;
