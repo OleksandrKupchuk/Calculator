@@ -59,9 +59,9 @@ public class SizeCalculator : MonoBehaviour
     }
 
     //Визначаємо у скільки разів розмір екрану менший за розмір калькулятора
-    private float GetScale(float minSize, float maxSize)
+    private float GetScale(float sizeDevice, float sizeCalculator)
     {
-        return minSize / maxSize;
+        return sizeDevice / sizeCalculator;
     }
 
     //Визначаємо найменший розмір сторони екрану
