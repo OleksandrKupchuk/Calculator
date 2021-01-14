@@ -627,7 +627,7 @@ PlayerSettings:
     m_ModelFolderPath: 
     m_PortalFolderPath: 
   luminCert:
-    m_CertPath: 
+    m_CertPath: C:/Users/Admin/Desktop/initialdevelopment.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:
