@@ -3213,12 +3213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6286f88b7f59848a9f547f92dd2d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 0
-  width: 0
-  widthButton: 0
   screenWidth: 0
   screenHeight: 0
   calculatorObject: {fileID: 2036601379}
+  t: 2.89
 --- !u!114 &2036601385
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -67,8 +67,6 @@ public class DataCalculation
     /// <param name="inputField"></param>
     private static void Operation(InputField inputField)
     {
-        GetCharFromInputField(inputField.text);
-
         if (GetCharFromInputField(inputField.text) != '0')
         {
             result = Calculator.Calculation(symbolOperationOfTheLine, int.Parse(leftPartOfTheLine), int.Parse(rightPartOfTheLine));
@@ -77,7 +75,7 @@ public class DataCalculation
 
         else
         {
-            Debug.LogError("Не введене друге число");
+            Debug.Log("Введений '0'");
         }
     }
 }

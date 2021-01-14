@@ -12,6 +12,8 @@ public class SizeCalculator : MonoBehaviour
 
     private RectTransform calculatorRectTransform;
 
+    [SerializeField] float t; 
+
     void Start()
     {
         if(calculatorObject != null)
@@ -30,7 +32,7 @@ public class SizeCalculator : MonoBehaviour
     }
 
     /// <summary>
-    /// Зміна розмірів калькулятора при розширеннях менших за сам калькулятор.
+    /// Зміна розмірів калькулятора при розширеннях менших або більших за сам калькулятор.
     /// </summary>
     /// <param name="screenWidth"></param>
     /// <param name="screenHeight"></param>
@@ -41,12 +43,12 @@ public class SizeCalculator : MonoBehaviour
             SetLocalScale(GetScale(screenWidth, calculatorRectTransform.sizeDelta.x));
         }
 
-        if (screenWidth > calculatorRectTransform.sizeDelta.y)
+        if (screenHeight < calculatorRectTransform.sizeDelta.y)
         {
             SetLocalScale(GetScale(screenHeight, calculatorRectTransform.sizeDelta.y));
         }
 
-        if(screenWidth > calculatorRectTransform.sizeDelta.y && screenHeight > calculatorRectTransform.sizeDelta.x)
+        if (screenWidth > calculatorRectTransform.sizeDelta.y && screenHeight > calculatorRectTransform.sizeDelta.x)
         {
             SetLocalScale(GetScale(FindingTheSmallerSide(screenWidth, screenHeight), calculatorRectTransform.sizeDelta.x));
         }
