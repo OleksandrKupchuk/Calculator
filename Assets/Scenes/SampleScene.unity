@@ -2210,8 +2210,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2036601383}
-        m_TargetAssemblyTypeName: Calculator, Assembly-CSharp
-        m_MethodName: ButtonReset
+        m_TargetAssemblyTypeName: ClearResult, Assembly-CSharp
+        m_MethodName: ResetResult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2508,7 +2508,7 @@ GameObject:
   - component: {fileID: 1794558494}
   - component: {fileID: 1794558493}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: OutputField
   m_TagString: InputField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

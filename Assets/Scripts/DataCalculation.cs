@@ -69,7 +69,7 @@ public class DataCalculation
     {
         if (GetCharFromInputField(inputField.text) != '0')
         {
-            result = Calculator.Calculation(symbolOperationOfTheLine, int.Parse(leftPartOfTheLine), int.Parse(rightPartOfTheLine));
+            result = Calculation(symbolOperationOfTheLine, int.Parse(leftPartOfTheLine), int.Parse(rightPartOfTheLine));
             inputField.text = result.ToString();
         }
 
@@ -77,5 +77,32 @@ public class DataCalculation
         {
             Debug.Log("Введений '0'");
         }
+    }
+
+    /// <summary>
+    /// Приймає 2 числа і знак операції, повертає результат
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static int Calculation(char symbol, int a, int b)
+    {
+        switch (symbol)
+        {
+            case '*':
+                return a * b;
+
+            case '/':
+                return a / b;
+
+            case '+':
+                return a + b;
+
+            case '-':
+                return a - b;
+        }
+
+        return 0;
     }
 }

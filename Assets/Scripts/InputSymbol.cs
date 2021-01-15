@@ -44,7 +44,7 @@ public class InputSymbol : MonoBehaviour
 
             else if (!CanInputThisSymbos())
             {
-                Debug.Log("Даний символ не можна вводитии першим");
+                Debug.Log("Недоступний ввід символа");
             }
         }
     }

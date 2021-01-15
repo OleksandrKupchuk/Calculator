@@ -12,8 +12,6 @@ public class SizeCalculator : MonoBehaviour
 
     private RectTransform calculatorRectTransform;
 
-    [SerializeField] float t; 
-
     void Start()
     {
         if(calculatorObject != null)
