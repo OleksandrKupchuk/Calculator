@@ -5,17 +5,18 @@ using UnityEngine.UI;
 
 public class ClearResult : MonoBehaviour
 {
-    [SerializeField] private InputField inputField;
+    [SerializeField] 
+    private InputField _outputField;
 
     void Start()
     {
-        inputField.text = "0";
+        _outputField.text = "0";
     }
 
     //Скидає поле виведення
     public void ResetResult()
     {
-        inputField.text = "0";
+        _outputField.text = "0";
     }
 }
 

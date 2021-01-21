@@ -6,31 +6,33 @@ using TMPro;
 
 public class InputSymbol : MonoBehaviour
 {
-    private InputField inputField;
-    [SerializeField] private char symbol;
-    [SerializeField] private TextMeshProUGUI textMeshPro;
+    private InputField _inputField;
+    [SerializeField] 
+    private char symbol;
+    [SerializeField] 
+    private TextMeshProUGUI textMeshPro;
 
-    private string symbolsFromTheInputField;
+    private string _symbolsFromTheInputField;
 
-    private char[] numbers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    private char[] _numbers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
     void Start()
     {
-        inputField = GameObject.FindGameObjectWithTag("InputField").GetComponent<InputField>(); 
+        _inputField = GameObject.FindGameObjectWithTag("InputField").GetComponent<InputField>(); 
         textMeshPro.text = symbol.ToString();
     }
 
     public void CheckTheOperation()
     {
-        DataCalculation.OutputResult(inputField);
+        DataCalculation.OutputResult(_inputField);
     }
 
     //Перевірка на введення символу в поле, метод обраховує коли можна вводити нулі
     public void InputSymbolInInputField()
     {
-        if (inputField != null)
+        if (_inputField != null)
         {
-            symbolsFromTheInputField = inputField.text;
+            _symbolsFromTheInputField = _inputField.text;
 
             if (CanInputThisSymbos() && CanInputZero())
             {
@@ -52,9 +54,9 @@ public class InputSymbol : MonoBehaviour
     //Перевірка на символ
     private bool IsSymbol()
     {
-        for (int i = 0; i < DataCalculation.symbolsOperation.Length; i++)
+        for (int i = 0; i < DataCalculation._symbolsOperation.Length; i++)
         {
-            if(symbol == DataCalculation.symbolsOperation[i])
+            if(symbol == DataCalculation._symbolsOperation[i])
             {
                 return true;
             }
@@ -66,9 +68,9 @@ public class InputSymbol : MonoBehaviour
     //Перевірка на введення символу, метод потрібний для того щоб не можна було ввести 2 і більше символи операції підряд
     private bool CanInputThisSymbos()
     {
-        for (int i = 0; i < DataCalculation.symbolsOperation.Length; i++)
+        for (int i = 0; i < DataCalculation._symbolsOperation.Length; i++)
         {
-            if(symbolsFromTheInputField[symbolsFromTheInputField.Length - 1] == DataCalculation.symbolsOperation[i])
+            if(_symbolsFromTheInputField[_symbolsFromTheInputField.Length - 1] == DataCalculation._symbolsOperation[i])
             {
                 if(IsNumber())
                 {
@@ -89,7 +91,7 @@ public class InputSymbol : MonoBehaviour
     //Перевірка на введення нуля
     private bool CanInputZero()
     {
-        if (symbolsFromTheInputField[0] == '0' && symbol == '0' && symbolsFromTheInputField.Length == 1)
+        if (_symbolsFromTheInputField[0] == '0' && symbol == '0' && _symbolsFromTheInputField.Length == 1)
         {
             return false;
         }
@@ -100,9 +102,9 @@ public class InputSymbol : MonoBehaviour
     //Перевірка на число
     private bool IsNumber()
     {
-        for (int i = 0; i < numbers.Length; i++)
+        for (int i = 0; i < _numbers.Length; i++)
         {
-            if(symbol == numbers[i])
+            if(symbol == _numbers[i])
             {
                 return true;
             }
@@ -114,15 +116,15 @@ public class InputSymbol : MonoBehaviour
     //Перерівяє чи потрібно стирати початковий "0" в полі введення
     private void CheckField()
     {
-        if(symbolsFromTheInputField[0] == '0' && symbolsFromTheInputField.Length == 1 && !IsSymbol())
+        if(_symbolsFromTheInputField[0] == '0' && _symbolsFromTheInputField.Length == 1 && !IsSymbol())
         {
-            inputField.text = string.Empty;
-            inputField.text += symbol;
+            _inputField.text = string.Empty;
+            _inputField.text += symbol;
         }
 
         else
         {
-            inputField.text += symbol;
+            _inputField.text += symbol;
         }
     }
 }

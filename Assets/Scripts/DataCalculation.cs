@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class DataCalculation
 {
-    private static string stringFromTheInputField;
-    public static char[] symbolsOperation = { '-', '+', '*', '/' };
-    private static string leftPartOfTheLine;
-    private static string rightPartOfTheLine;
-    private static char symbolOperationOfTheLine;
-    private static int result;
+    private static string _stringFromTheInputField;
+    public static char[] _symbolsOperation = { '-', '+', '*', '/' };
+    private static string _leftPartOfTheLine;
+    private static string _rightPartOfTheLine;
+    private static char _symbolOperationOfTheLine;
+    private static float _result;
 
     /// <summary>
     /// Метод приймає вираз із поля введення і ділить його на 2 числа та повертає символ оперрації який у введений у виразі
@@ -19,19 +19,19 @@ public class DataCalculation
     /// <returns></returns>
     private static char GetCharFromInputField(string inputFieldText)
     {
-        stringFromTheInputField = inputFieldText;
+        _stringFromTheInputField = inputFieldText;
 
-        for (int i = stringFromTheInputField.Length - 1; i > 0; i--)
+        for (int i = _stringFromTheInputField.Length - 1; i > 0; i--)
         {
-            for (int j = 0; j < symbolsOperation.Length; j++)
+            for (int j = 0; j < _symbolsOperation.Length; j++)
             {
-                if (stringFromTheInputField[i] == symbolsOperation[j] && stringFromTheInputField[stringFromTheInputField.Length - 1] != symbolsOperation[j])
+                if (_stringFromTheInputField[i] == _symbolsOperation[j] && _stringFromTheInputField[_stringFromTheInputField.Length - 1] != _symbolsOperation[j])
                 {
-                    symbolOperationOfTheLine = stringFromTheInputField[i];
-                    leftPartOfTheLine = stringFromTheInputField.Substring(0, i);
-                    rightPartOfTheLine = stringFromTheInputField.Substring(i + 1);
+                    _symbolOperationOfTheLine = _stringFromTheInputField[i];
+                    _leftPartOfTheLine = _stringFromTheInputField.Substring(0, i);
+                    _rightPartOfTheLine = _stringFromTheInputField.Substring(i + 1);
 
-                    return symbolOperationOfTheLine;
+                    return _symbolOperationOfTheLine;
                 }
 
                 else
@@ -69,13 +69,13 @@ public class DataCalculation
     {
         if (GetCharFromInputField(inputField.text) != '0')
         {
-            result = Calculation(symbolOperationOfTheLine, int.Parse(leftPartOfTheLine), int.Parse(rightPartOfTheLine));
-            inputField.text = result.ToString();
+            _result = Calculation(_symbolOperationOfTheLine, float.Parse(_leftPartOfTheLine), float.Parse(_rightPartOfTheLine));
+            inputField.text = _result.ToString();
         }
 
         else
         {
-            Debug.Log("Введений '0'");
+            Debug.Log("Отриманий '0'");
         }
     }
 
@@ -86,7 +86,7 @@ public class DataCalculation
     /// <param name="a"></param>
     /// <param name="b"></param>
     /// <returns></returns>
-    public static int Calculation(char symbol, int a, int b)
+    public static float Calculation(char symbol, float a, float b)
     {
         switch (symbol)
         {

@@ -3200,7 +3200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab0214eca648c14aad75b7899706352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 1794558493}
+  _outputField: {fileID: 1794558493}
 --- !u!114 &2036601384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3213,10 +3213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6286f88b7f59848a9f547f92dd2d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenWidth: 0
-  screenHeight: 0
-  calculatorObject: {fileID: 2036601379}
-  t: 2.89
+  _screenWidth: 0
+  _screenHeight: 0
+  _calculatorObject: {fileID: 2036601379}
 --- !u!114 &2036601385
 MonoBehaviour:
   m_ObjectHideFlags: 0

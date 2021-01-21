@@ -5,28 +5,31 @@ using UnityEngine.UI;
 
 public class SizeCalculator : MonoBehaviour
 {
-    [SerializeField] private int screenWidth;
-    [SerializeField] private int screenHeight;
+    [SerializeField] 
+    private int _screenWidth;
+    [SerializeField] 
+    private int _screenHeight;
 
-    [SerializeField] private GameObject calculatorObject;
+    [SerializeField] 
+    private GameObject _calculatorObject;
 
-    private RectTransform calculatorRectTransform;
+    private RectTransform _calculatorRectTransform;
 
     void Start()
     {
-        if(calculatorObject != null)
+        if(_calculatorObject != null)
         {
-            calculatorRectTransform = calculatorObject.GetComponent<RectTransform>();
+            _calculatorRectTransform = _calculatorObject.GetComponent<RectTransform>();
         }
         else
         {
             Debug.LogError("Посилання на об'єкт не встановлено");
         }
 
-        screenWidth = Screen.width;
-        screenHeight = Screen.height;
+        _screenWidth = Screen.width;
+        _screenHeight = Screen.height;
 
-        ChangeSize(screenWidth, screenHeight);
+        ChangeSize(_screenWidth, _screenHeight);
     }
 
     /// <summary>
@@ -36,26 +39,26 @@ public class SizeCalculator : MonoBehaviour
     /// <param name="screenHeight"></param>
     private void ChangeSize(float screenWidth, float screenHeight)
     {
-        if(screenWidth < calculatorRectTransform.sizeDelta.x)
+        if (screenWidth < _calculatorRectTransform.sizeDelta.x)
         {
-            SetLocalScale(GetScale(screenWidth, calculatorRectTransform.sizeDelta.x));
+            SetLocalScale(GetScale(screenWidth, _calculatorRectTransform.sizeDelta.x));
         }
 
-        if (screenHeight < calculatorRectTransform.sizeDelta.y)
+        if (screenHeight < _calculatorRectTransform.sizeDelta.y)
         {
-            SetLocalScale(GetScale(screenHeight, calculatorRectTransform.sizeDelta.y));
+            SetLocalScale(GetScale(screenHeight, _calculatorRectTransform.sizeDelta.y));
         }
 
-        if (screenWidth > calculatorRectTransform.sizeDelta.y && screenHeight > calculatorRectTransform.sizeDelta.x)
+        if (screenWidth > _calculatorRectTransform.sizeDelta.y && screenHeight > _calculatorRectTransform.sizeDelta.x)
         {
-            SetLocalScale(GetScale(FindingTheSmallerSide(screenWidth, screenHeight), calculatorRectTransform.sizeDelta.x));
+            SetLocalScale(GetScale(FindingTheSmallerSide(screenWidth, screenHeight), _calculatorRectTransform.sizeDelta.x));
         }
     }
 
     //Встановлюємо нові розміри калькулятору 
     private void SetLocalScale(float valueX)
     {
-        calculatorRectTransform.localScale = new Vector2(calculatorRectTransform.localScale.x * valueX, calculatorRectTransform.localScale.y * valueX);
+        _calculatorRectTransform.localScale = new Vector2(_calculatorRectTransform.localScale.x * valueX, _calculatorRectTransform.localScale.y * valueX);
     }
 
     //Визначаємо у скільки разів розмір екрану менший за розмір калькулятора
